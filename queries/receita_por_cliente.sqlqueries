@@ -1,0 +1,12 @@
+-- Top 15 clientes por receita total
+-- Base: 136 clientes com ao menos 1 compra registrada
+SELECT 
+    c.idcliente,
+    c.cliente, 
+    SUM(v.total) AS receita_total
+FROM vendas v 
+INNER JOIN clientes c 
+    ON v.idcliente = c.idcliente 
+GROUP BY c.idcliente, c.cliente 
+ORDER BY receita_total DESC 
+LIMIT 15;
